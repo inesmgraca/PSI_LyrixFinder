@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1589371480 source:c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\psi19j_m4567_2219129_inesgraca\main.c
+	<stdio.h>
+	<stdlib.h>
+	<locale.h>
+	<conio.c>
+	"addmusic.h"
+	"intro.h"
+	"menu.h"
+
+1589371425 c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\psi19j_m4567_2219129_inesgraca\addmusic.h
+
+1589371585 c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\psi19j_m4567_2219129_inesgraca\intro.h
+
+1589371425 c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\psi19j_m4567_2219129_inesgraca\menu.h
+
