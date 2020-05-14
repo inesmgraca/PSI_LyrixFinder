@@ -8,7 +8,7 @@
 
 int main()
 {
-    intro();
+    //intro();
     menu();
     return 0;
 }

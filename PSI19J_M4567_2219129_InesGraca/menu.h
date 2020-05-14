@@ -3,63 +3,98 @@
 
 void menu()
 {
-    int key,op=1,menu=0; //    key=seta    op=opção
+    int key,op=1,adminops=4,menu=0;
+    // key = seta
+    // op = opção a selecionar
+    // adminops = opções de admins -> 4- indisponíveis, 6- disponíveis
+
     setlocale(LC_ALL,"Portuguese");
+    textcolor(15);
 
     gotoxy(25,2);
-    printf("LYRIXFINDER");
-    gotoxy(2,4);
-    printf("Bem-vindo");
-    gotoxy(25,6);
-    printf(" Pesquisar música ");
-    gotoxy(25,8);
-    printf(" Ver favoritos ");
-    gotoxy(25,10);
-    printf(" Opções ");
-    gotoxy(25,12);
-    printf(" Terminar sessão ");
-    gotoxy(25,16);
-    printf(" Adicionar música ");
-    gotoxy(25,18);
-    printf(" Registo de músicas adicionadas ");
+    printf(" _     _     ___   _   _     ____  _   _      ___   ____  ___       ");
+    gotoxy(25,3);
+    printf("| |   \\ \\_/ | |_) | | \\ \\_/ | |_  | | | |\\ | | | \\ | |_  | |_)");
+    gotoxy(25,4);
+    printf("|_|__  |_|  |_| \\ |_| /_/ \\ |_|   |_| |_| \\| |_|_/ |_|__ |_| \\  ");
+
+    gotoxy(4,8);
+    printf("Bem-vindo, Lyrix");
+
+    printf("-----");//eliminar qd login funcionar
+    /*if (login==0) //admin
+    {
+        printf("Admin");
+    }
+    else            //user
+    {
+        printf("Lover");
+    }
+    */
+
+    gotoxy(47,10);
+    printf("Pesquisar músicas");
+    gotoxy(49,12);
+    printf("Ver favoritos");
+    gotoxy(50,14);
+    printf("Definições");
+    gotoxy(49,16);
+    printf("Fim de sessão");
+
+    /*if (login==0)
+    {
+    adminops=6; //definir opções de admin como disponíveis */
+    gotoxy(48,19);
+    printf("Adicionar música");
+    gotoxy(47,21);
+    printf("Registo de músicas");
+    gotoxy(50,22);
+    printf("adicionadas");
+    //}
 
     do
     {
-        textcolor(7); //cor opção highlight
-        textbackground(3);
+        textcolor(3);
+        gotoxy(25,5);
+        printf("--------------------------------------------------------------");
+        textcolor(15);
+
+        textbackground(3); //cor do highlight de uma opção
 
         if (op==1)
         {
-            gotoxy(25,6); //local do highlight de op 1
-            printf(" Pesquisar música ");
+            gotoxy(46,10); //local do highlight da opção 1
+            printf(" Pesquisar músicas ");
         }
         else if (op==2)
         {
-            gotoxy(25,8); //local para começar a fazer highlight de op 2
+            gotoxy(48,12); //local do highlight da opção 2
             printf(" Ver favoritos ");
         }
         else if (op==3)
         {
-            gotoxy(25,10); //local para começar a fazer highlight de op 3
-            printf(" Opções ");
+            gotoxy(49,14); //local do highlight da opção 3
+            printf(" Definições ");
         }
         else if (op==4)
         {
-            gotoxy(25,12); //local para começar a fazer highlight de op 4
-            printf(" Terminar sessão ");
+            gotoxy(48,16); //local do highlight da opção 4
+            printf(" Fim de sessão ");
         }
         else if (op==5)
         {
-            gotoxy(25,16); //local para começar a fazer highlight de op 5
+            gotoxy(47,19); //local do highlight da opção 5
             printf(" Adicionar música ");
         }
         else
         {
-            gotoxy(25,18); //local para começar a fazer highlight de op 6
-            printf(" Registo de músicas adicionadas ");
+            gotoxy(46,21); //local do highlight da opção 6
+            printf(" Registo de músicas ");
+            gotoxy(49,22);
+            printf(" adicionadas ");
         }
 
-        gotoxy(1,20);
+        gotoxy(1,25);
         key=_getch();
 
         system("color 0F");
@@ -75,7 +110,7 @@ void menu()
                     }
                     break;
                 case 80:
-                    if (op!=6)
+                    if (op!=adminops)
                     {
                         op++;
                     }
@@ -98,7 +133,7 @@ void menu()
                 printf("opções \n");
                 break;
             case 4:
-                printf("terminou sessão \n");
+                menu=1;
                 break;
             case 5:
                 addmusic();
@@ -107,8 +142,6 @@ void menu()
                 printf("registo \n"); //Olá UwU
                 break;
             }
-
-            menu=1;
         }
 
     } while (menu!=1);

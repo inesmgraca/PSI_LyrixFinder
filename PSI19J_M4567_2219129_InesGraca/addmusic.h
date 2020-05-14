@@ -47,6 +47,8 @@ char addmusic()
     fclose(musica);
     system(music);
 
+    system("cls");
+
     menu();
 }
 
