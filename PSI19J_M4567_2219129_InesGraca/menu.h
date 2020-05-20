@@ -1,7 +1,7 @@
 #ifndef MENU_H_INCLUDED
 #define MENU_H_INCLUDED
 
-void menu()
+void menu(int lang)
 {
     int key,op=1,adminops=4,menu=0;
     // key = seta
@@ -19,7 +19,14 @@ void menu()
     printf("|_|__  |_|  |_| \\ |_| /_/ \\ |_|   |_| |_| \\| |_|_/ |_|__ |_| \\  ");
 
     gotoxy(4,8);
-    printf("Bem-vindo, Lyrix");
+    if (lang==0)
+    {
+        printf("Bem-vindo, Lyrix");
+    }
+    else
+    {
+        printf("Welcome, Lyrix");
+    }
 
     printf("-----");//eliminar qd login funcionar
     /*if (login==0) //admin
@@ -136,7 +143,7 @@ void menu()
                 menu=1;
                 break;
             case 5:
-                addmusic();
+                addmusic(lang);
                 break;
             case 6:
                 printf("registo \n"); //Olá UwU
