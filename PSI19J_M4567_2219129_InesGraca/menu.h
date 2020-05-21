@@ -1,13 +1,14 @@
 #ifndef MENU_H_INCLUDED
 #define MENU_H_INCLUDED
 
-void menu(int lang)
+int menu(int lang, int cor)
 {
-    int key,op=1,adminops=4,menu=0;
-    // key = seta
-    // op = opção a selecionar
+    int key,op=1,opc=1,adminops=6,text[5]={3,6,10,12,13};
+    // key = seta   op = opção a selecionar
     // adminops = opções de admins -> 4- indisponíveis, 6- disponíveis
 
+    top:
+    op=1;
     setlocale(LC_ALL,"Portuguese");
     textcolor(15);
 
@@ -28,7 +29,7 @@ void menu(int lang)
         printf("Welcome, Lyrix");
     }
 
-    printf("-----");//eliminar qd login funcionar
+    printf("-----");                //! eliminar quando login estiver a funcionar
     /*if (login==0) //admin
     {
         printf("Admin");
@@ -39,66 +40,132 @@ void menu(int lang)
     }
     */
 
-    gotoxy(47,10);
-    printf("Pesquisar músicas");
-    gotoxy(49,12);
-    printf("Ver favoritos");
-    gotoxy(50,14);
-    printf("Definições");
-    gotoxy(49,16);
-    printf("Fim de sessão");
+    if (lang==0)
+    {
+        gotoxy(47,10);
+        printf("Pesquisar músicas");
+        gotoxy(49,12);
+        printf("Ver favoritos");
+        gotoxy(50,14);
+        printf("Definições");
+        gotoxy(49,16);
+        printf("Fim de sessão");
+    }
+    else
+    {
+        gotoxy(50,10);
+        printf("Search song");
+        gotoxy(49,12);
+        printf("See favorites");
+        gotoxy(52,14);
+        printf("Options");
+        gotoxy(52,16);
+        printf("Log out");
+    }
+
 
     /*if (login==0)
     {
-    adminops=6; //definir opções de admin como disponíveis */
-    gotoxy(48,19);
-    printf("Adicionar música");
-    gotoxy(47,21);
-    printf("Registo de músicas");
-    gotoxy(50,22);
-    printf("adicionadas");
+        adminops=6; //definir opções de admin como disponíveis */
+
+        if (lang==0)
+        {
+            gotoxy(48,19);
+            printf("Adicionar música");
+            gotoxy(47,21);
+            printf("Registo de músicas");
+            gotoxy(50,22);
+            printf("adicionadas");
+        }
+        else
+        {
+            gotoxy(51,19);
+            printf("Add song");
+            gotoxy(50,21);
+            printf("Added songs");
+            gotoxy(51,22);
+            printf("registry");
+        }
     //}
 
     do
     {
-        textcolor(3);
+        textcolor(text[cor]);
         gotoxy(25,5);
         printf("--------------------------------------------------------------");
         textcolor(15);
 
-        textbackground(3); //cor do highlight de uma opção
+        textbackground(text[cor]); //cor do highlight da opção
 
-        if (op==1)
+        if (lang==0)
         {
-            gotoxy(46,10); //local do highlight da opção 1
-            printf(" Pesquisar músicas ");
-        }
-        else if (op==2)
-        {
-            gotoxy(48,12); //local do highlight da opção 2
-            printf(" Ver favoritos ");
-        }
-        else if (op==3)
-        {
-            gotoxy(49,14); //local do highlight da opção 3
-            printf(" Definições ");
-        }
-        else if (op==4)
-        {
-            gotoxy(48,16); //local do highlight da opção 4
-            printf(" Fim de sessão ");
-        }
-        else if (op==5)
-        {
-            gotoxy(47,19); //local do highlight da opção 5
-            printf(" Adicionar música ");
+            if (op==1)
+            {
+                gotoxy(46,10); //local do highlight da opção 1
+                printf(" Pesquisar músicas ");
+            }
+            else if (op==2)
+            {
+                gotoxy(48,12); //local do highlight da opção 2
+                printf(" Ver favoritos ");
+            }
+            else if (op==3)
+            {
+                gotoxy(49,14); //local do highlight da opção 3
+                printf(" Definições ");
+            }
+            else if (op==4)
+            {
+                gotoxy(48,16); //local do highlight da opção 4
+                printf(" Fim de sessão ");
+            }
+            else if (op==5)
+            {
+                gotoxy(47,19); //local do highlight da opção 5
+                printf(" Adicionar música ");
+            }
+            else
+            {
+                gotoxy(46,21); //local do highlight da opção 6
+                printf(" Registo de músicas ");
+                gotoxy(49,22);
+                printf(" adicionadas ");
+            }
         }
         else
         {
-            gotoxy(46,21); //local do highlight da opção 6
-            printf(" Registo de músicas ");
-            gotoxy(49,22);
-            printf(" adicionadas ");
+            if (op==1)
+            {
+                gotoxy(49,10); //local do highlight da opção 1
+                printf(" Search song ");
+            }
+            else if (op==2)
+            {
+                gotoxy(48,12); //local do highlight da opção 2
+                printf(" See favorites ");
+            }
+            else if (op==3)
+            {
+                gotoxy(51,14); //local do highlight da opção 3
+                printf(" Options ");
+            }
+            else if (op==4)
+            {
+                gotoxy(51,16); //local do highlight da opção 4
+                printf(" Log out ");
+            }
+            else if (op==5)
+            {
+                gotoxy(50,19); //local do highlight da opção 5
+                printf(" Add song ");
+            }
+            else
+            {
+                gotoxy(49,21); //local do highlight da opção 6
+                printf(" Added songs ");
+                gotoxy(50,22);
+                printf(" registry ");
+            }
         }
 
         gotoxy(1,25);
@@ -131,27 +198,140 @@ void menu(int lang)
             switch(op)
             {
             case 1:
-                printf("pesquisar \n");
+                //pesquisa
                 break;
             case 2:
-                printf("seus favoritos \n");
+                //favoritos
                 break;
             case 3:
-                printf("opções \n");
+                opcao:
+                opc=1;
+
+                if (lang==0)
+                {
+                    gotoxy(50,5);
+                    printf("DEFINIÇÕES");
+                    gotoxy(49,10);
+                    printf("Mudar idioma");
+                    gotoxy(47,12);
+                    printf("Alterar as cores");
+                    gotoxy(52,14);
+                    printf("Voltar");
+                }
+                else
+                {
+                    gotoxy(52,5);
+                    printf("OPTIONS");
+                    gotoxy(48,10);
+                    printf("Change language");
+                    gotoxy(49,12);
+                    printf("Change colors");
+                    gotoxy(53,14);
+                    printf("Back");
+                }
+
+                do
+                {
+                    textbackground(text[cor]); //cor do highlight da opção
+
+                    if (lang==0)
+                    {
+                        if (opc==1)
+                        {
+                            gotoxy(48,10); //local do highlight da opção 1
+                            printf(" Mudar idioma ");
+                        }
+                        else if (opc==2)
+                        {
+                            gotoxy(46,12); //local do highlight da opção 2
+                            printf(" Alterar as cores ");
+                        }
+                        else
+                        {
+                            gotoxy(51,14); //local do highlight da opção 3
+                            printf(" Voltar ");
+                        }
+                    }
+                    else
+                    {
+                        if (opc==1)
+                        {
+                            gotoxy(47,10); //local do highlight da opção 1
+                            printf(" Change language ");
+                        }
+                        else if (opc==2)
+                        {
+                            gotoxy(48,12); //local do highlight da opção 2
+                            printf(" Change colors ");
+                        }
+                        else
+                        {
+                            gotoxy(52,14); //local do highlight da opção 3
+                            printf(" Back ");
+                        }
+                    }
+
+                    gotoxy(1,25);
+                    key=_getch();
+
+                    system("color 0F");
+
+                    if(key==0 || key==224)
+                    {
+                        switch (_getch())
+                        {
+                        case 72:
+                            if (opc!=1)
+                            {
+                                opc--;
+                            }
+                            break;
+                        case 80:
+                            if (opc!=3)
+                            {
+                                opc++;
+                            }
+                            break;
+                        }
+                    }
+                    else if (key==13)
+                    {
+                        system("cls");
+                        gotoxy(45,11);
+
+                        switch(opc)
+                        {
+                        case 1:
+                            lang=idioma(cor);
+                            goto opcao;
+                            break;
+                        case 2:
+                            cor=cores(lang);
+                            goto opcao;
+                            break;
+                        case 3:
+                            opc=0;
+                            break;
+                        }
+                    }
+
+                } while (opc!=0);
+                goto top;
                 break;
             case 4:
-                menu=1;
+                return 0;
                 break;
             case 5:
                 addmusic(lang);
+                goto top;
                 break;
             case 6:
-                printf("registo \n"); //Olá UwU
+                //registo
                 break;
             }
         }
 
-    } while (menu!=1);
+    } while (0!=1);
 }
 
 #endif // MENU_H_INCLUDED

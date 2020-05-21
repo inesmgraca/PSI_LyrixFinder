@@ -1,14 +1,10 @@
-#ifndef SELECIONAR_H_INCLUDED
-#define SELECIONAR_H_INCLUDED
+#ifndef IDIOMA_H_INCLUDED
+#define IDIOMA_H_INCLUDED
 
-int selecionar()
+int idioma(int cor)
 {
-    int key,op=1,select=0;
-    // key = seta
-    // op = opção a selecionar
-
-    setlocale(LC_ALL,"Portuguese");
-    textcolor(15);
+    int key,op=1,opc=0,text[5]={3,6,10,12,13};
+    // key = seta   op = opção a selecionar
 
     gotoxy(25,2);
     printf(" _     _     ___   _   _     ____  _   _      ___   ____  ___       ");
@@ -24,12 +20,12 @@ int selecionar()
 
     do
     {
-        textcolor(3);
+        textcolor(text[cor]);
         gotoxy(25,5);
         printf("--------------------------------------------------------------");
         textcolor(15);
 
-        textbackground(3); //cor do highlight de uma opção
+        textbackground(text[cor]); //cor do highlight da opção
 
         if (op==1)
         {
@@ -67,23 +63,38 @@ int selecionar()
         }
         else if (key==13)
         {
-            system("cls");
-            gotoxy(45,11);
+            opc=1;
+            textcolor(text[cor]);
+            gotoxy(25,5);
+            printf("--------------------------------------------------------------");
+            textcolor(15);
 
             switch(op)
             {
             case 1:
-                printf("Português selecionado \n");
+                gotoxy(43,15);
+                textbackground(text[cor]);
+                printf(" Português selecionado ");
+                gotoxy(1,25);
+                getch();
+                system("color 0F");
+                system("cls");
                 return 0;
                 break;
             case 2:
-                printf("  English selected \n");
+                gotoxy(46,15);
+                textbackground(text[cor]);
+                printf(" English selected ");
+                gotoxy(1,25);
+                getch();
+                system("color 0F");
+                system("cls");
                 return 1;
                 break;
             }
         }
 
-    } while (select!=1);
+    } while (opc!=1);
 }
 
-#endif // SELECIONAR_H_INCLUDED
+#endif // IDIOMA_H_INCLUDED

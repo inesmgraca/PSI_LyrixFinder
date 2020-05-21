@@ -32,12 +32,17 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Unit filename="addmusic.h" />
+		<Unit filename="cores.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="idioma.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="intro.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="menu.h" />
-		<Unit filename="selecionar.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

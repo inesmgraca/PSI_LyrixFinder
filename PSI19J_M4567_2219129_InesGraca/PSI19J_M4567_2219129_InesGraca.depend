@@ -1,22 +1,29 @@
 # depslib dependency file v1.0
-1589974611 source:c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\psi19j_m4567_2219129_inesgraca\main.c
+1590076836 source:c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\psi19j_m4567_2219129_inesgraca\main.c
 	<stdio.h>
 	<stdlib.h>
 	<locale.h>
 	<conio.c>
 	<time.h>
 	"addmusic.h"
+	"cores.h"
+	"idioma.h"
 	"intro.h"
 	"menu.h"
-	"selecionar.h"
 
 1589976155 c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\psi19j_m4567_2219129_inesgraca\addmusic.h
 
 1589371585 c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\psi19j_m4567_2219129_inesgraca\intro.h
 
-1589975761 c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\psi19j_m4567_2219129_inesgraca\menu.h
+1590096751 c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\psi19j_m4567_2219129_inesgraca\menu.h
 
 1589974542 c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\psi19j_m4567_2219129_inesgraca\select.h
 
 1589974544 c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\psi19j_m4567_2219129_inesgraca\selecionar.h
+
+1590078266 c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\psi19j_m4567_2219129_inesgraca\idioma.h
+
+1590076692 c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\psi19j_m4567_2219129_inesgraca\opcoes.h
+
+1590077808 c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\psi19j_m4567_2219129_inesgraca\cores.h
 
