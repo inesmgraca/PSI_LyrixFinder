@@ -1,16 +1,30 @@
 #ifndef MENU_H_INCLUDED
 #define MENU_H_INCLUDED
 
-int menu(int lang, int cor)
+int menu()
 {
-    int key,op=1,opc=1,adminops=6,text[5]={3,6,10,12,13};
+    int key,op=1,opc=1,getinfo,lang,cor,adminops=6,text[5]={3,6,10,12,13};
     // key = seta   op = opção a selecionar
     // adminops = opções de admins -> 4- indisponíveis, 6- disponíveis
 
     top:
     op=1;
-    setlocale(LC_ALL,"Portuguese");
     textcolor(15);
+
+    FILE *corestxt;                     //saber cor e idioma escolhidos
+    FILE *langs;
+    corestxt=fopen("cor.txt","r");
+    langs=fopen("lang.txt","r");
+    while (fscanf(corestxt," %i",&getinfo)!=EOF)
+    {
+        cor=getinfo;
+    }
+    while (fscanf(langs," %i",&getinfo)!=EOF)
+    {
+        lang=getinfo;
+    }
+    fclose(corestxt);
+    fclose(langs);
 
     gotoxy(25,2);
     printf(" _     _     ___   _   _     ____  _   _      ___   ____  ___       ");
@@ -30,7 +44,7 @@ int menu(int lang, int cor)
     }
 
     printf("-----");                //! eliminar quando login estiver a funcionar
-    /*if (login==0) //admin
+    /*if (adminops==6) //admin
     {
         printf("Admin");
     }
@@ -64,10 +78,8 @@ int menu(int lang, int cor)
     }
 
 
-    /*if (login==0)
+    /*if (adminops==6)
     {
-        adminops=6; //definir opções de admin como disponíveis */
-
         if (lang==0)
         {
             gotoxy(48,19);
@@ -86,7 +98,7 @@ int menu(int lang, int cor)
             gotoxy(51,22);
             printf("registry");
         }
-    //}
+    }*/
 
     do
     {
@@ -302,11 +314,11 @@ int menu(int lang, int cor)
                         switch(opc)
                         {
                         case 1:
-                            lang=idioma(cor);
+                            lang=idioma();
                             goto opcao;
                             break;
                         case 2:
-                            cor=cores(lang);
+                            cor=cores();
                             goto opcao;
                             break;
                         case 3:

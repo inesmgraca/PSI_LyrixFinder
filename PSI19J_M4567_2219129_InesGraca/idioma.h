@@ -1,10 +1,18 @@
 #ifndef IDIOMA_H_INCLUDED
 #define IDIOMA_H_INCLUDED
 
-int idioma(int cor)
+int idioma()
 {
-    int key,op=1,opc=0,text[5]={3,6,10,12,13};
+    int key,op=1,opc=0,getinfo,cor,text[5]={3,6,10,12,13};
     // key = seta   op = opção a selecionar
+
+    FILE *cores;                //saber idioma escolhido anteriormente
+    cores=fopen("cor.txt","r");
+    while (fscanf(cores," %i",&getinfo)!=EOF)
+    {
+        cor=getinfo;
+    }
+    fclose(cores);
 
     gotoxy(25,2);
     printf(" _     _     ___   _   _     ____  _   _      ___   ____  ___       ");
@@ -69,6 +77,9 @@ int idioma(int cor)
             printf("--------------------------------------------------------------");
             textcolor(15);
 
+            FILE *langs;
+            langs=fopen("lang.txt","w");
+
             switch(op)
             {
             case 1:
@@ -79,6 +90,8 @@ int idioma(int cor)
                 getch();
                 system("color 0F");
                 system("cls");
+                fprintf(langs,"%i\n",0);
+                fclose(langs);
                 return 0;
                 break;
             case 2:
@@ -89,6 +102,8 @@ int idioma(int cor)
                 getch();
                 system("color 0F");
                 system("cls");
+                fprintf(langs,"%i\n",1);
+                fclose(langs);
                 return 1;
                 break;
             }

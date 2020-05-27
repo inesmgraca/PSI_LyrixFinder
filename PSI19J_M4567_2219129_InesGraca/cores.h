@@ -1,9 +1,14 @@
 #ifndef CORES_H_INCLUDED
 #define CORES_H_INCLUDED
 
-int cores(int lang)
+int cores()
 {
-    int key,op=0,text[5]={3,6,10,12,13};
+    int key,op=0,opc=0,lang,text[5]={3,6,10,12,13};
+
+    FILE *langs;             //saber idioma escolhido anteriormente
+    langs=fopen("lang.txt","r");
+    fscanf(langs,"%i",&lang);
+    fclose(langs);
 
     if (lang==0)
     {
@@ -123,10 +128,15 @@ int cores(int lang)
         else if (key==13)
         {
             system("cls");
+            FILE *cores;
+            cores=fopen("cor.txt","r");
+            fprintf(cores,"%i\n",op);
+            fclose(cores);
+            opc=1;
             return op;
         }
 
-    } while (0!=1);
+    } while (opc!=1);
 }
 
 #endif // CORES_H_INCLUDED
