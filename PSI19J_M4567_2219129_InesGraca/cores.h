@@ -1,15 +1,8 @@
 #ifndef CORES_H_INCLUDED
 #define CORES_H_INCLUDED
 
-int cores()
+void texto6(int lang)
 {
-    int key,op=0,opc=0,lang,text[5]={3,6,10,12,13};
-
-    FILE *langs;             //saber idioma escolhido anteriormente
-    langs=fopen("lang.txt","r");
-    fscanf(langs,"%i",&lang);
-    fclose(langs);
-
     if (lang==0)
     {
         gotoxy(53,5);
@@ -40,6 +33,18 @@ int cores()
         gotoxy(52,18);
         printf("Style 4");
     }
+}
+
+int cores()
+{
+    int key,op=0,opc=0,lang,text[5]={3,6,10,12,13};
+
+    FILE *langs;             //saber idioma escolhido anteriormente
+    langs=fopen("lang.txt","r");
+    fscanf(langs,"%i",&lang);
+    fclose(langs);
+
+    texto6(lang);
 
     do
     {
@@ -129,7 +134,7 @@ int cores()
         {
             system("cls");
             FILE *cores;
-            cores=fopen("cor.txt","r");
+            cores=fopen("cor.txt","w");
             fprintf(cores,"%i\n",op);
             fclose(cores);
             opc=1;

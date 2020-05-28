@@ -1,22 +1,42 @@
 #ifndef LOGIN_H_INCLUDED
 #define LOGIN_H_INCLUDED
 
+void texto5(int lang)
+{
+    gotoxy(53,5);
+    printf("LOGIN");
+
+    if (lang==0)
+    {
+        gotoxy(47,10);
+        printf("Conta já existente");
+        gotoxy(48,12);
+        printf("Criar nova conta");
+    }
+    else
+    {
+        gotoxy(48,10);
+        printf("Existing account");
+        gotoxy(47,12);
+        printf("Create new account");
+    }
+}
+
 int login()
 {
-    int login1,login2,lang,cor,key,op=1,text[5]={3,6,10,12,13};
+    int usernum=-1,login1,login2,lang,cor,key,op=1,text[5]={3,6,10,12,13};
     char verif;
-    int usernum=-1;
 
     struct log
     {
         char user[25],pass[25];
-        int usertype; //0- normal user, 1- admin
+        int usertype;               //0- normal user, 1- admin
     };
 
     struct log logininfo;
     struct log login[25];
 
-    FILE *cores;                  //saber cor e idioma escolhidos anteriormente
+    FILE *cores;                    //saber cor e idioma escolhidos anteriormente
     FILE *langs;
     cores=fopen("cor.txt","r");
     langs=fopen("lang.txt","r");
@@ -28,30 +48,37 @@ int login()
     textcolor(15);
 
     logon:
-    gotoxy(53,5);
-    printf("LOGIN");
-
-    //if (lang==0)
-    //{
-        gotoxy(47,10);
-        printf("Conta já existente");
-        gotoxy(48,12);
-        printf("Criar nova conta");
-    //}
+    texto5(lang);
 
     do
     {
         textbackground(text[cor]); //cor do highlight da opção
 
-        if (op==1)
+        if (lang==0)
         {
-            gotoxy(46,10); //local do highlight da opção 1
-            printf(" Conta já existente ");
+            if (op==1)
+            {
+                gotoxy(46,10); //local do highlight da opção 1
+                printf(" Conta já existente ");
+            }
+            else
+            {
+                gotoxy(47,12); //local do highlight da opção 2
+                printf(" Criar nova conta ");
+            }
         }
         else
         {
-            gotoxy(47,12); //local do highlight da opção 2
-            printf(" Criar nova conta ");
+            if (op==1)
+            {
+                gotoxy(47,10); //local do highlight da opção 1
+                printf(" Existing account ");
+            }
+            else
+            {
+                gotoxy(46,12); //local do highlight da opção 2
+                printf(" Create new account ");
+            }
         }
 
         gotoxy(1,25);
@@ -81,13 +108,14 @@ int login()
         {
             FILE *getusers;
             getusers=fopen("users.txt","r");
+            system("cls");
 
             switch(op)
             {
             case 1:
                 for (int i=0;i<25;i++)
                 {
-                    fread(&login[10],sizeof(struct log),1,getusers);
+                    fread(&login[i],sizeof(struct log),1,getusers);
                 }
 
                 fclose(getusers);
@@ -110,7 +138,14 @@ int login()
 
                 if (usernum==-1)
                 {
-                    printf("\n\n O username e/ou a password não estão corretas \n");
+                    if (lang==0)
+                    {
+                        printf("\n\n O username e/ou a password estão incorretas \n");
+                    }
+                    else
+                    {
+                        printf("\n\n Username and/or password are incorrect \n");
+                    }
                     getch();
                     system("cls");
                     goto logon;
@@ -118,38 +153,74 @@ int login()
                 else
                 {
                     system("cls");
-                    printf("\n\n Bem-vindo, %s \n",login[usernum].user);
-                    getch();
-                    system("cls");
+                    FILE *userlogin;
+                    userlogin=fopen("userlogin.txt","w");
+                    fprintf(userlogin,"%s\n",login[usernum].user);
+                    fclose(userlogin);
+                    return login[usernum].usertype;
                 }
-
                 break;
             case 2:
-                printf("Novo login \n\n");
+                if (lang==0)
+                {
+                    printf("Novo login \n\n");
+                }
+                else
+                {
+                    printf("New login \n\n");
+                }
+
                 printf(" Username: ");
                 gets(logininfo.user);
                 printf(" Password: ");
                 gets(logininfo.pass);
 
+                /*printf(" 0- User, 1- Admin: ");
+                scanf("%i",&logininfo.usertype);
+                fflush(stdin);*/                    //! utilizar para adicionar mais admins
+
                 logininfo.usertype=0;
                 fflush(stdin);
 
-                printf("A informação está correta? \n\n");
-                printf("S/N \n");
+                if (lang==0)
+                {
+                    printf("\n A informação está correta? \n");
+                    printf(" S/N \n");
+                }
+                else
+                {
+                    printf("\n Is the information correct? \n");
+                    printf(" Y/N \n");
+                }
+
                 verif=getch();
 
-                if (verif=='S' || verif=='s')
+                if (verif=='S' || verif=='s' || verif=='Y' || verif=='y')
                 {
                     FILE *newuser;
                     newuser=fopen("users.txt","a");
                     fwrite(&logininfo,sizeof(struct log),1,newuser);
                     fclose(newuser);
 
-                    printf("\n\n User criado \n");
+                    if (lang==0)
+                    {
+                        printf("\n\n Utilizador criado \n");
+                    }
+                    else
+                    {
+                        printf("\n\n User created \n");
+                    }
                 }
                 else
                 {
-                    printf("\n\n User cancelado \n");
+                    if (lang==0)
+                    {
+                        printf("\n\n Novo utilizador cancelado \n");
+                    }
+                    else
+                    {
+                        printf("\n\n New user canceled \n");
+                    }
                 }
 
                 getch();

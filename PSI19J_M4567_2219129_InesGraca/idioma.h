@@ -1,6 +1,21 @@
 #ifndef IDIOMA_H_INCLUDED
 #define IDIOMA_H_INCLUDED
 
+void texto4()
+{
+    gotoxy(25,2);
+    printf(" _     _     ___   _   _     ____  _   _      ___   ____  ___       ");
+    gotoxy(25,3);
+    printf("| |   \\ \\_/ | |_) | | \\ \\_/ | |_  | | | |\\ | | | \\ | |_  | |_)");
+    gotoxy(25,4);
+    printf("|_|__  |_|  |_| \\ |_| /_/ \\ |_|   |_| |_| \\| |_|_/ |_|__ |_| \\  ");
+
+    gotoxy(50,10);
+    printf("Português");
+    gotoxy(51,12);
+    printf("English");
+}
+
 int idioma()
 {
     int key,op=1,opc=0,getinfo,cor,text[5]={3,6,10,12,13};
@@ -14,17 +29,7 @@ int idioma()
     }
     fclose(cores);
 
-    gotoxy(25,2);
-    printf(" _     _     ___   _   _     ____  _   _      ___   ____  ___       ");
-    gotoxy(25,3);
-    printf("| |   \\ \\_/ | |_) | | \\ \\_/ | |_  | | | |\\ | | | \\ | |_  | |_)");
-    gotoxy(25,4);
-    printf("|_|__  |_|  |_| \\ |_| /_/ \\ |_|   |_| |_| \\| |_|_/ |_|__ |_| \\  ");
-
-    gotoxy(50,10);
-    printf("Português");
-    gotoxy(51,12);
-    printf("English");
+    texto4();
 
     do
     {

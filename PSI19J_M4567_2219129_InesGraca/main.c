@@ -8,17 +8,27 @@
 #include "cores.h"
 #include "idioma.h"
 #include "intro.h"
+#include "login.h"
 #include "menu.h"
 
 int main()
 {
-    int opc=0;
+    int a=0,admin;                      //0- regular user, 1- admin
     setlocale(LC_ALL,"Portuguese");
     textcolor(15);
 
     intro();
-    //login();
-    opc=menu();
 
-    return 0;
+    login:
+    admin=login();
+    a=menu(admin);
+
+    if (a==1)
+    {
+        goto login;
+    }
+    else
+    {
+        return 0;
+    }
 }

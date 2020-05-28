@@ -1,31 +1,8 @@
 #ifndef MENU_H_INCLUDED
 #define MENU_H_INCLUDED
 
-int menu()
+void texto1(int lang, int adminops)
 {
-    int key,op=1,opc=1,getinfo,lang,cor,adminops=6,text[5]={3,6,10,12,13};
-    // key = seta   op = opção a selecionar
-    // adminops = opções de admins -> 4- indisponíveis, 6- disponíveis
-
-    top:
-    op=1;
-    textcolor(15);
-
-    FILE *corestxt;                     //saber cor e idioma escolhidos
-    FILE *langs;
-    corestxt=fopen("cor.txt","r");
-    langs=fopen("lang.txt","r");
-    while (fscanf(corestxt," %i",&getinfo)!=EOF)
-    {
-        cor=getinfo;
-    }
-    while (fscanf(langs," %i",&getinfo)!=EOF)
-    {
-        lang=getinfo;
-    }
-    fclose(corestxt);
-    fclose(langs);
-
     gotoxy(25,2);
     printf(" _     _     ___   _   _     ____  _   _      ___   ____  ___       ");
     gotoxy(25,3);
@@ -43,16 +20,14 @@ int menu()
         printf("Welcome, Lyrix");
     }
 
-    printf("-----");                //! eliminar quando login estiver a funcionar
-    /*if (adminops==6) //admin
+    if (adminops==6) //admin
     {
         printf("Admin");
     }
-    else            //user
+    else             //user
     {
         printf("Lover");
     }
-    */
 
     if (lang==0)
     {
@@ -77,8 +52,7 @@ int menu()
         printf("Log out");
     }
 
-
-    /*if (adminops==6)
+    if (adminops==6)
     {
         if (lang==0)
         {
@@ -98,7 +72,97 @@ int menu()
             gotoxy(51,22);
             printf("registry");
         }
-    }*/
+    }
+}
+
+void texto2(int lang)
+{
+    if (lang==0)
+    {
+        gotoxy(50,5);
+        printf("DEFINIÇÕES");
+        gotoxy(49,10);
+        printf("Mudar idioma");
+        gotoxy(47,12);
+        printf("Alterar as cores");
+        gotoxy(52,14);
+        printf("Voltar");
+    }
+    else
+    {
+        gotoxy(52,5);
+        printf("OPTIONS");
+        gotoxy(48,10);
+        printf("Change language");
+        gotoxy(49,12);
+        printf("Change colors");
+        gotoxy(53,14);
+        printf("Back");
+    }
+}
+
+void texto3(int lang)
+{
+    if (lang==0)
+    {
+        gotoxy(48,5);
+        printf("FIM DE SESSÃO");
+        gotoxy(47,10);
+        printf("Voltar ao login");
+        gotoxy(47,12);
+        printf("Sair do programa");
+        gotoxy(51,14);
+        printf("Cancelar");
+    }
+    else
+    {
+        gotoxy(51,5);
+        printf("LOG OUT");
+        gotoxy(48,10);
+        printf("Return to login");
+        gotoxy(49,12);
+        printf("Exit program");
+        gotoxy(53,14);
+        printf("Back");
+    }
+}
+
+int menu(int admin)
+{
+    int key,op,opc,getinfo,lang,cor,adminops,text[5]={3,6,10,12,13};
+    // key = seta   op = opção a selecionar
+    // adminops = opções de admins -> 4- indisponíveis, 6- disponíveis
+
+    top:
+    op=1;
+
+    FILE *corestxt;                     //saber cor e idioma escolhidos
+    FILE *langs;
+    corestxt=fopen("cor.txt","r");
+    langs=fopen("lang.txt","r");
+    while (fscanf(corestxt," %i",&getinfo)!=EOF)
+    {
+        cor=getinfo;
+    }
+    while (fscanf(langs," %i",&getinfo)!=EOF)
+    {
+        lang=getinfo;
+    }
+    fclose(corestxt);
+    fclose(langs);
+
+    if (admin==0)
+    {
+        adminops=4;
+    }
+    else
+    {
+        adminops=6;
+    }
+
+    texto1(lang,adminops);
+
+    /**/
 
     do
     {
@@ -218,29 +282,7 @@ int menu()
             case 3:
                 opcao:
                 opc=1;
-
-                if (lang==0)
-                {
-                    gotoxy(50,5);
-                    printf("DEFINIÇÕES");
-                    gotoxy(49,10);
-                    printf("Mudar idioma");
-                    gotoxy(47,12);
-                    printf("Alterar as cores");
-                    gotoxy(52,14);
-                    printf("Voltar");
-                }
-                else
-                {
-                    gotoxy(52,5);
-                    printf("OPTIONS");
-                    gotoxy(48,10);
-                    printf("Change language");
-                    gotoxy(49,12);
-                    printf("Change colors");
-                    gotoxy(53,14);
-                    printf("Back");
-                }
+                texto2(lang);
 
                 do
                 {
@@ -331,7 +373,93 @@ int menu()
                 goto top;
                 break;
             case 4:
-                return 0;
+                texto3(lang);
+                opc=1;
+                do
+                {
+                    textbackground(text[cor]); //cor do highlight da opção
+
+                    if (lang==0)
+                    {
+                        if (opc==1)
+                        {
+                            gotoxy(46,10); //local do highlight da opção 1
+                            printf(" Voltar ao login ");
+                        }
+                        else if (opc==2)
+                        {
+                            gotoxy(46,12); //local do highlight da opção 2
+                            printf(" Sair do programa ");
+                        }
+                        else
+                        {
+                            gotoxy(50,14); //local do highlight da opção 3
+                            printf(" Cancelar ");
+                        }
+                    }
+                    else
+                    {
+                        if (opc==1)
+                        {
+                            gotoxy(47,10); //local do highlight da opção 1
+                            printf(" Return to login ");
+                        }
+                        else if (opc==2)
+                        {
+                            gotoxy(48,12); //local do highlight da opção 2
+                            printf(" Exit program ");
+                        }
+                        else
+                        {
+                            gotoxy(52,14); //local do highlight da opção 3
+                            printf(" Back ");
+                        }
+                    }
+
+                    gotoxy(1,25);
+                    key=_getch();
+
+                    system("color 0F");
+
+                    if(key==0 || key==224)
+                    {
+                        switch (_getch())
+                        {
+                        case 72:
+                            if (opc!=1)
+                            {
+                                opc--;
+                            }
+                            break;
+                        case 80:
+                            if (opc!=3)
+                            {
+                                opc++;
+                            }
+                            break;
+                        }
+                    }
+                    else if (key==13)
+                    {
+                        system("cls");
+                        gotoxy(45,11);
+
+                        switch(opc)
+                        {
+                        case 1:
+                            return 1;
+                            break;
+                        case 2:
+                            return 0;
+                            break;
+                        case 3:
+                            opc=0;
+                            break;
+                        }
+                    }
+
+                } while (opc!=0);
+                goto top;
                 break;
             case 5:
                 addmusic(lang);

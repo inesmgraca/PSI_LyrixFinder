@@ -1,29 +1,33 @@
 # depslib dependency file v1.0
-1590597566 source:c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\psi19j_m4567_2219129_inesgraca\main.c
+1590665076 source:c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\psi19j_m4567_2219129_inesgraca\main.c
 	<stdio.h>
 	<stdlib.h>
 	<locale.h>
 	<conio.c>
+	<string.h>
 	<time.h>
 	"addmusic.h"
 	"cores.h"
 	"idioma.h"
 	"intro.h"
+	"login.h"
 	"menu.h"
 
-1589976155 c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\psi19j_m4567_2219129_inesgraca\addmusic.h
+1590664614 c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\psi19j_m4567_2219129_inesgraca\addmusic.h
 
 1589371585 c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\psi19j_m4567_2219129_inesgraca\intro.h
 
-1590597382 c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\psi19j_m4567_2219129_inesgraca\menu.h
+1590666022 c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\psi19j_m4567_2219129_inesgraca\menu.h
 
 1589974542 c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\psi19j_m4567_2219129_inesgraca\select.h
 
 1589974544 c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\psi19j_m4567_2219129_inesgraca\selecionar.h
 
-1590597332 c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\psi19j_m4567_2219129_inesgraca\idioma.h
+1590657738 c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\psi19j_m4567_2219129_inesgraca\idioma.h
 
 1590076692 c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\psi19j_m4567_2219129_inesgraca\opcoes.h
 
-1590596354 c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\psi19j_m4567_2219129_inesgraca\cores.h
+1590665125 c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\psi19j_m4567_2219129_inesgraca\cores.h
+
+1590664758 c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\psi19j_m4567_2219129_inesgraca\login.h
 
