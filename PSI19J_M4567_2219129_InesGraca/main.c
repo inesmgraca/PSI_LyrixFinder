@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <locale.h>
 #include <conio.c>
+#include <locale.h>
 #include <string.h>
 #include <time.h>
 #include "addmusic.h"
@@ -10,6 +10,8 @@
 #include "intro.h"
 #include "login.h"
 #include "menu.h"
+#include "pesquisa.h"
+#include "registo.h"
 
 int main()
 {

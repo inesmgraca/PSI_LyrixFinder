@@ -109,12 +109,12 @@ void addmusic()
 
     if (lang==0)
     {
-        printf("Música adicionada às %02d:%02d:%02d ",horas,minutos,segundos);
+        printf("     Música adicionada às %02d:%02d:%02d ",horas,minutos,segundos);
         printf("no dia %02d/%02d/%d \n",dia,mes,ano);
     }
     else
     {
-        printf("Music added at %02d:%02d:%02d ",horas,minutos,segundos);
+        printf("     Music added at %02d:%02d:%02d ",horas,minutos,segundos);
         printf("in %02d/%02d/%d \n",dia,mes,ano);
     }
 

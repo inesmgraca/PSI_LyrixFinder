@@ -274,7 +274,7 @@ int menu(int admin)
             switch(op)
             {
             case 1:
-                //pesquisa
+                pesquisa();
                 break;
             case 2:
                 //favoritos
@@ -370,7 +370,6 @@ int menu(int admin)
                     }
 
                 } while (opc!=0);
-                goto top;
                 break;
             case 4:
                 texto3(lang);
@@ -459,16 +458,16 @@ int menu(int admin)
                     }
 
                 } while (opc!=0);
-                goto top;
                 break;
             case 5:
-                addmusic(lang);
-                goto top;
+                addmusic();
                 break;
             case 6:
-                //registo
+                registo();
                 break;
             }
+
+            goto top;
         }
 
     } while (0!=1);
