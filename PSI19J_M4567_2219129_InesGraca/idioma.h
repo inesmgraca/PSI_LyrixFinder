@@ -21,8 +21,8 @@ int idioma()
     int key,op=1,opc=0,getinfo,cor,text[5]={3,6,10,12,13};
     // key = seta   op = opção a selecionar
 
-    FILE *cores;                //saber idioma escolhido anteriormente
-    cores=fopen("cor.txt","r");
+    FILE *cores;                              //saber idioma escolhido anteriormente
+    cores=fopen(".\\options\\cor.txt","r");
     while (fscanf(cores," %i",&getinfo)!=EOF)
     {
         cor=getinfo;
@@ -83,7 +83,7 @@ int idioma()
             textcolor(15);
 
             FILE *langs;
-            langs=fopen("lang.txt","w");
+            langs=fopen(".\\options\\lang.txt","w");
 
             switch(op)
             {
@@ -95,7 +95,7 @@ int idioma()
                 getch();
                 system("color 0F");
                 system("cls");
-                fprintf(langs,"%i\n",0);
+                fprintf(langs,"0\n");
                 fclose(langs);
                 return 0;
                 break;
@@ -107,7 +107,7 @@ int idioma()
                 getch();
                 system("color 0F");
                 system("cls");
-                fprintf(langs,"%i\n",1);
+                fprintf(langs,"1\n");
                 fclose(langs);
                 return 1;
                 break;

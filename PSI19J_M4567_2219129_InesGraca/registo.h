@@ -8,18 +8,18 @@ void registo()
     setlocale(LC_ALL,"Portuguese");
 
     FILE *langs;             //saber idioma escolhido anteriormente
-    langs=fopen("lang.txt","r");
+    langs=fopen(".\\options\\lang.txt","r");
     fscanf(langs,"%i",&lang);
     fclose(langs);
 
     FILE *registo;
     if (lang==0)
     {
-        registo=fopen("registo_pt.txt","r");
+        registo=fopen(".\\registos\\registo_pt.txt","r");
     }
     else
     {
-        fopen("registo_en.txt","r");
+        registo=fopen(".\\registos\\registo_en.txt","r");
     }
 
     printf("\n");

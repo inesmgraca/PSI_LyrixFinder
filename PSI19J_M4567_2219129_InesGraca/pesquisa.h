@@ -3,13 +3,14 @@
 
 void pesquisa()
 {
-    char nome[50],artist[50],music[100],r;   // detalhes da música
+    char nome[50],artist[50],music[150],r;   // detalhes da música
     int getinfo,cor,lang,a;                  // a- posição para pôr artista
+    char folder[25]=".\\music\\";            // localização do ficheiro
 
     FILE *corestxt;                          //saber cor e idioma escolhidos
     FILE *langs;
-    corestxt=fopen("cor.txt","r");
-    langs=fopen("lang.txt","r");
+    corestxt=fopen(".\\options\\cor.txt","r");
+    langs=fopen(".\\options\\lang.txt","r");
     while (fscanf(corestxt," %i",&getinfo)!=EOF)
     {
         cor=getinfo;
@@ -35,13 +36,13 @@ void pesquisa()
     }
 
     gotoxy(8,4);
-    gets(music);
+    gets(nome);
 
     gotoxy(a,5);
     gets(artist);
 
-    strcpy(nome,music);
-
+    strcpy(music,folder);
+    strcat(music,nome);
     strcat(music,"_");
     strcat(music,artist);
     strcat(music,".txt");

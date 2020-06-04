@@ -3,15 +3,16 @@
 
 void addmusic()
 {
-    char nome[50],artist[50],album[50],music[150];  // detalhes da música
+    char nome[50],artist[50],album[50],music[125];  // detalhes da música
     int horas,minutos,segundos,dia,mes,ano;         // tempo e data de adição
     int getinfo,cor,lang,a;                         // a- posição para pôr artista
     char infoget[25],admin[25];                     // infos admin
+    char folder[25]=".\\music\\";                   // localização do ficheiro
 
     FILE *corestxt;                                 //saber cor e idioma escolhidos
     FILE *langs;
-    corestxt=fopen("cor.txt","r");
-    langs=fopen("lang.txt","r");
+    corestxt=fopen(".\\options\\cor.txt","r");
+    langs=fopen(".\\options\\lang.txt","r");
     while (fscanf(corestxt," %i",&getinfo)!=EOF)
     {
         cor=getinfo;
@@ -37,7 +38,7 @@ void addmusic()
     }
 
     gotoxy(8,4);
-    gets(music);
+    gets(nome);
 
     gotoxy(a,5);
     gets(artist);
@@ -45,8 +46,8 @@ void addmusic()
     gotoxy(9,6);
     gets(album);
 
-    strcpy(nome,music);
-
+    strcpy(music,folder);
+    strcat(music,nome);
     strcat(music,"_");
     strcat(music,artist);
     strcat(music,".txt");
@@ -64,12 +65,12 @@ void addmusic()
     FILE *musica;
     musica=fopen(music,"w+");
 
-    fprintf(musica,"\n%s\n by %s\n in %s\n\n Lyrics:\n",nome,artist,album);
+    fprintf(musica,"\n%s\n by %s\n in %s\n\n Lyrics:\n\n",nome,artist,album);
     fclose(musica);
 
     if (lang==0)
     {
-        printf("\n Detalhes guardados no ficheiro %s \n",music);
+        printf("\n Detalhes guardados na localização %s \n",music);
         printf("\n Insira as lyrics da música \n (clique para continuar) \n\n");
     }
     else
@@ -83,12 +84,12 @@ void addmusic()
     system("cls");
 
     FILE *registo_pt;
-    registo_pt=fopen("registo_pt.txt","a");
+    registo_pt=fopen(".\\registos\\registo_pt.txt","a");
     FILE *registo_en;
-    registo_en=fopen("registo_en.txt","a");
+    registo_en=fopen(".\\registos\\registo_en.txt","a");
 
     FILE *useradmin;
-    useradmin=fopen("userlogin.txt","r");
+    useradmin=fopen(".\\user\\userlogin.txt","r");
     while (fscanf(useradmin," %s",&infoget)!=EOF)
     {
         strcpy(admin,infoget);
@@ -109,20 +110,20 @@ void addmusic()
 
     if (lang==0)
     {
-        printf("     Música adicionada às %02d:%02d:%02d ",horas,minutos,segundos);
+        printf("Música adicionada às %02d:%02d:%02d ",horas,minutos,segundos);
         printf("no dia %02d/%02d/%d \n",dia,mes,ano);
     }
     else
     {
-        printf("     Music added at %02d:%02d:%02d ",horas,minutos,segundos);
+        printf("Music added at %02d:%02d:%02d ",horas,minutos,segundos);
         printf("in %02d/%02d/%d \n",dia,mes,ano);
     }
 
-    fprintf(registo_en,"%s added %s at ",admin,music);
+    fprintf(registo_en,"     %s added %s at ",admin,music);
     fprintf(registo_en,"%02d:%02d:%02d in ",horas,minutos,segundos);
     fprintf(registo_en,"%02d/%02d/%d\n",dia,mes,ano);
 
-    fprintf(registo_pt,"%s adicionou %s às ",admin,music);
+    fprintf(registo_pt,"     %s adicionou %s às ",admin,music);
     fprintf(registo_pt,"%02d:%02d:%02d no dia ",horas,minutos,segundos);
     fprintf(registo_pt,"%02d/%02d/%d\n",dia,mes,ano);
 

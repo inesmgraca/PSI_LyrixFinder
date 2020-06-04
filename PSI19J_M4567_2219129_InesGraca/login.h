@@ -38,8 +38,8 @@ int login()
 
     FILE *cores;                    //saber cor e idioma escolhidos anteriormente
     FILE *langs;
-    cores=fopen("cor.txt","r");
-    langs=fopen("lang.txt","r");
+    cores=fopen(".\\options\\cor.txt","r");
+    langs=fopen(".\\options\\lang.txt","r");
     fscanf(cores,"%i",&cor);
     fscanf(langs,"%i",&lang);
     fclose(cores);
@@ -107,7 +107,7 @@ int login()
         else if (key==13)
         {
             FILE *getusers;
-            getusers=fopen("users.txt","r");
+            getusers=fopen(".\\user\\users.txt","r");
             system("cls");
 
             switch(op)
@@ -154,7 +154,7 @@ int login()
                 {
                     system("cls");
                     FILE *userlogin;
-                    userlogin=fopen("userlogin.txt","w");
+                    userlogin=fopen(".\\user\\userlogin.txt","w");
                     fprintf(userlogin,"%s\n",login[usernum].user);
                     fclose(userlogin);
                     return login[usernum].usertype;
@@ -198,7 +198,7 @@ int login()
                 if (verif=='S' || verif=='s' || verif=='Y' || verif=='y')
                 {
                     FILE *newuser;
-                    newuser=fopen("users.txt","a");
+                    newuser=fopen(".\\user\\users.txt","a");
                     fwrite(&logininfo,sizeof(struct log),1,newuser);
                     fclose(newuser);
 

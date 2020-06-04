@@ -39,8 +39,8 @@ int cores()
 {
     int key,op=0,opc=0,lang,text[5]={3,6,10,12,13};
 
-    FILE *langs;             //saber idioma escolhido anteriormente
-    langs=fopen("lang.txt","r");
+    FILE *langs;                             //saber idioma escolhido anteriormente
+    langs=fopen(".\\options\\lang.txt","r");
     fscanf(langs,"%i",&lang);
     fclose(langs);
 
@@ -134,7 +134,7 @@ int cores()
         {
             system("cls");
             FILE *cores;
-            cores=fopen("cor.txt","w");
+            cores=fopen(".\\options\\cor.txt","w");
             fprintf(cores,"%i\n",op);
             fclose(cores);
             opc=1;

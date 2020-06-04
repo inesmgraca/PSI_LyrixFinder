@@ -31,6 +31,10 @@ int main()
     }
     else
     {
+        FILE *cores;
+        cores=fopen(".\\options\\cor.txt","w");
+        fprintf(cores,"0\n");
+        fclose(cores);
         return 0;
     }
 }

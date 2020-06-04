@@ -138,8 +138,8 @@ int menu(int admin)
 
     FILE *corestxt;                     //saber cor e idioma escolhidos
     FILE *langs;
-    corestxt=fopen("cor.txt","r");
-    langs=fopen("lang.txt","r");
+    corestxt=fopen(".\\options\\cor.txt","r");
+    langs=fopen(".\\options\\lang.txt","r");
     while (fscanf(corestxt," %i",&getinfo)!=EOF)
     {
         cor=getinfo;
@@ -161,8 +161,6 @@ int menu(int admin)
     }
 
     texto1(lang,adminops);
-
-    /**/
 
     do
     {
