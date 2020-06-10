@@ -16,13 +16,18 @@ void registo()
     if (lang==0)
     {
         registo=fopen(".\\registos\\registo_pt.txt","r");
+        gotoxy(40,5);
+        printf("REGISTO");
     }
     else
     {
         registo=fopen(".\\registos\\registo_en.txt","r");
+        gotoxy(35,5);
+        printf("REGISTRY");
     }
 
     printf("\n");
+    gotoxy(1,10);
     r=getc(registo);
 
     do

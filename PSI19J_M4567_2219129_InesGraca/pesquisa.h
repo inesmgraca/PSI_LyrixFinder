@@ -1,10 +1,32 @@
 #ifndef PESQUISA_H_INCLUDED
 #define PESQUISA_H_INCLUDED
 
+void texto9(int lang)
+{
+    if (lang==0)
+    {
+        gotoxy(50,5);
+        printf("PESQUISA");
+        gotoxy(50,10);
+        printf("Nome:");
+        gotoxy(47,12);
+        printf("Artista:");
+    }
+    else
+    {
+        gotoxy(55,5);
+        printf("SEARCH");
+        gotoxy(50,10);
+        printf("Name:");
+        gotoxy(48,12);
+        printf("Artist:");
+    }
+}
+
 void pesquisa()
 {
     char nome[50],artist[50],music[150],r;   // detalhes da música
-    int getinfo,cor,lang,a;                  // a- posição para pôr artista
+    int getinfo,cor,lang;                    // infos definições
     char folder[25]=".\\music\\";            // localização do ficheiro
 
     FILE *corestxt;                          //saber cor e idioma escolhidos
@@ -22,23 +44,11 @@ void pesquisa()
     fclose(corestxt);
     fclose(langs);
 
-    if (lang==0)
-    {
-        printf("\n   Detalhes da música \n");
-        printf("\n Nome: \n Artista: ");
-        a=11;
-    }
-    else
-    {
-        printf("\n   Song details \n");
-        printf("\n Name: \n Artist: ");
-        a=10;
-    }
+    texto9(lang);
 
-    gotoxy(8,4);
+    gotoxy(56,10);
     gets(nome);
-
-    gotoxy(a,5);
+    gotoxy(56,12);
     gets(artist);
 
     strcpy(music,folder);
@@ -64,15 +74,18 @@ void pesquisa()
     {
         if (lang==0)
         {
-            printf("Erro \n");
+            gotoxy(5,16);
+            printf("A música ainda não consta do programa ");
         }
         else
         {
-            printf("Error \n");
+            gotoxy(5,16);
+            printf("The song's not on the program yet ");
         }
     }
     else
     {
+        system("cls");
         r=getc(musica);
 
         do
