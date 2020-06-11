@@ -1,7 +1,7 @@
 #ifndef PESQUISA_H_INCLUDED
 #define PESQUISA_H_INCLUDED
 
-void texto9(int lang)
+void texto5(int lang)
 {
     if (lang==0)
     {
@@ -26,25 +26,18 @@ void texto9(int lang)
 void pesquisa()
 {
     char nome[50],artist[50],music[150],r;   // detalhes da música
-    int getinfo,cor,lang;                    // infos definições
+    int getinfo,lang;                        // infos definições
     char folder[25]=".\\music\\";            // localização do ficheiro
 
-    FILE *corestxt;                          //saber cor e idioma escolhidos
-    FILE *langs;
-    corestxt=fopen(".\\options\\cor.txt","r");
+    FILE *langs;                             //saber cor e idioma escolhidos
     langs=fopen(".\\options\\lang.txt","r");
-    while (fscanf(corestxt," %i",&getinfo)!=EOF)
-    {
-        cor=getinfo;
-    }
     while (fscanf(langs," %i",&getinfo)!=EOF)
     {
         lang=getinfo;
     }
-    fclose(corestxt);
     fclose(langs);
 
-    texto9(lang);
+    texto5(lang);
 
     gotoxy(56,10);
     gets(nome);

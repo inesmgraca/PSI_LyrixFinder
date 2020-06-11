@@ -9,9 +9,9 @@
 #include "idioma.h"
 #include "intro.h"
 #include "login.h"
-#include "menu.h"
 #include "pesquisa.h"
 #include "registo.h"
+#include "menu.h"
 
 int main()
 {

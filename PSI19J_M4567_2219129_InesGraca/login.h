@@ -1,7 +1,9 @@
 #ifndef LOGIN_H_INCLUDED
 #define LOGIN_H_INCLUDED
 
-void texto5(int lang)
+#define numlogins 10
+
+void texto9(int lang)
 {
     gotoxy(53,5);
     printf("LOGIN");
@@ -22,10 +24,35 @@ void texto5(int lang)
     }
 }
 
+void texto10()
+{
+    gotoxy(44,10);
+    printf("Username:");
+    gotoxy(44,12);
+    printf("Password:");
+}
+
+void texto11(int lang)
+{
+    if (lang==0)
+    {
+        gotoxy(5,17);
+        printf("As informações estão corretas?");
+        gotoxy(5,19);
+        printf("SIM     NÃO");
+    }
+    else
+    {
+        gotoxy(5,17);
+        printf("Are the informations correct?");
+        gotoxy(5,19);
+        printf("YES     NO");
+    }
+}
+
 int login()
 {
-    int usernum=-1,login1,login2,lang,cor,key,op=1,text[5]={3,6,10,12,13};
-    char verif;
+    int usernum=-1,login1,login2,lang,cor,key,p,op=1,opc=0,text[5]={3,6,10,12,13};
 
     struct log
     {
@@ -48,7 +75,7 @@ int login()
     textcolor(15);
 
     logon:
-    texto5(lang);
+    texto9(lang);
 
     do
     {
@@ -113,17 +140,47 @@ int login()
             switch(op)
             {
             case 1:
-                for (int i=0;i<25;i++)
+                for (int i=0;i<numlogins;i++)
                 {
                     fread(&login[i],sizeof(struct log),1,getusers);
                 }
 
                 fclose(getusers);
-                printf("Login \n\n");
-                printf(" Username: ");
+                gotoxy(53,5);
+                printf("LOGIN");
+
+                texto10();
+
+                gotoxy(54,10);
                 gets(logininfo.user);
-                printf(" Password: ");
-                gets(logininfo.pass);
+                gotoxy(54,12);
+
+                p=0;
+
+                do
+                {
+                    key=getch();
+                    switch (key)
+                    {
+                    case 8:
+                        if (p>0)
+                        {
+                            gotoxy(p+53,12);
+                            printf(" ");
+                            gotoxy(p+53,12);
+                            p--;
+                            logininfo.pass[p]='\0';
+                        }
+                        break;
+                    case 13:
+                        break;
+                    default:
+                        logininfo.pass[p]=key;
+                        printf("*");
+                        p++;
+                    }
+
+                } while (key!=13);
 
                 for (int c=0;c<25;c++)
                 {
@@ -140,11 +197,13 @@ int login()
                 {
                     if (lang==0)
                     {
-                        printf("\n\n O username e/ou a password estão incorretas \n");
+                        gotoxy(5,17);
+                        printf("O username e/ou a password estão incorretas ");
                     }
                     else
                     {
-                        printf("\n\n Username and/or password are incorrect \n");
+                        gotoxy(5,17);
+                        printf("Username and/or password are incorrect ");
                     }
                     getch();
                     system("cls");
@@ -157,71 +216,159 @@ int login()
                     userlogin=fopen(".\\user\\userlogin.txt","w");
                     fprintf(userlogin,"%s\n",login[usernum].user);
                     fclose(userlogin);
-                    return login[usernum].usertype;
+                    op=3;
                 }
                 break;
             case 2:
                 if (lang==0)
                 {
-                    printf("Novo login \n\n");
+                    gotoxy(49,5);
+                    printf("NOVA CONTA");
                 }
                 else
                 {
-                    printf("New login \n\n");
+                    gotoxy(48,5);
+                    printf("NEW ACCOUNT");
                 }
 
-                printf(" Username: ");
-                gets(logininfo.user);
-                printf(" Password: ");
-                gets(logininfo.pass);
-
-                /*printf(" 0- User, 1- Admin: ");
-                scanf("%i",&logininfo.usertype);
-                fflush(stdin);*/                    //! utilizar para adicionar mais admins
-
-                logininfo.usertype=0;
+                texto10();
                 fflush(stdin);
 
-                if (lang==0)
-                {
-                    printf("\n A informação está correta? \n");
-                    printf(" S/N \n");
-                }
-                else
-                {
-                    printf("\n Is the information correct? \n");
-                    printf(" Y/N \n");
-                }
+                gotoxy(54,10);
+                gets(logininfo.user);
+                gotoxy(54,12);
 
-                verif=getch();
+                p=0;
 
-                if (verif=='S' || verif=='s' || verif=='Y' || verif=='y')
+                do
                 {
-                    FILE *newuser;
-                    newuser=fopen(".\\user\\users.txt","a");
-                    fwrite(&logininfo,sizeof(struct log),1,newuser);
-                    fclose(newuser);
+                    key=getch();
+                    switch (key)
+                    {
+                    case 8:
+                        if (p>0)
+                        {
+                            gotoxy(p+53,12);
+                            printf(" ");
+                            gotoxy(p+53,12);
+                            p--;
+                            logininfo.pass[p]='\0';
+                        }
+                        break;
+                    case 13:
+                        break;
+                    default:
+                        logininfo.pass[p]=key;
+                        printf("*");
+                        p++;
+                    }
+
+                } while (key!=13);
+
+                logininfo.usertype=0;   // colocar 1 para adicionar admins
+
+                texto11(lang);
+                opc=0;
+
+                do
+                {
+                    textbackground(text[cor]); //cor do highlight da opção
 
                     if (lang==0)
                     {
-                        printf("\n\n Utilizador criado \n");
+                        if (opc==0)
+                        {
+                            gotoxy(4,19); //local do highlight da opção 0
+                            printf(" SIM ");
+                        }
+                        else
+                        {
+                            gotoxy(12,19); //local do highlight da opção 1
+                            printf(" NÃO ");
+                        }
                     }
                     else
                     {
-                        printf("\n\n User created \n");
+                        if (opc==0)
+                        {
+                            gotoxy(4,19); //local do highlight da opção 0
+                            printf(" YES ");
+                        }
+                        else
+                        {
+                            gotoxy(12,19); //local do highlight da opção 1
+                            printf(" NO ");
+                        }
                     }
-                }
-                else
-                {
-                    if (lang==0)
+
+                    gotoxy(1,25);
+                    key=_getch();
+
+                    system("color 0F");
+
+                    if(key==0 || key==224)
                     {
-                        printf("\n\n Novo utilizador cancelado \n");
+                        switch (_getch())
+                        {
+                        case 75:
+                            if (opc!=0)
+                            {
+                                opc--;
+                            }
+                            break;
+                        case 77:
+                            if (opc!=1)
+                            {
+                                opc++;
+                            }
+                            break;
+                        }
                     }
-                    else
+                    else if (key==13)
                     {
-                        printf("\n\n New user canceled \n");
+                        if (opc==0)
+                        {
+                            FILE *newuser;
+                            newuser=fopen(".\\user\\users.txt","a");
+                            fwrite(&logininfo,sizeof(struct log),1,newuser);
+                            fclose(newuser);
+
+                            if (lang==0)
+                            {
+                                gotoxy(36,17);
+                                printf("SIM");
+                                gotoxy(5,19);
+                                printf("Utilizador criado ");
+                            }
+                            else
+                            {
+                                gotoxy(35,17);
+                                printf("YES");
+                                gotoxy(5,19);
+                                printf("User created ");
+                            }
+                        }
+                        else
+                        {
+                            if (lang==0)
+                            {
+                                gotoxy(36,17);
+                                printf("NÃO");
+                                gotoxy(5,19);
+                                printf("Novo utilizador cancelado ");
+                            }
+                            else
+                            {
+                                gotoxy(36,17);
+                                printf("NO");
+                                gotoxy(5,19);
+                                printf("New user canceled ");
+                            }
+                        }
+                        opc=2;
                     }
-                }
+
+                } while (opc!=2);
 
                 getch();
                 system("cls");
@@ -230,9 +377,10 @@ int login()
                 break;
             }
         }
-    } while (0!=1);
 
-    return 0;
+    } while (op!=3);
+
+    return login[usernum].usertype;
 }
 
 #endif // LOGIN_H_INCLUDED

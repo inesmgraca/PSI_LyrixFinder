@@ -138,10 +138,11 @@ int cores()
             fprintf(cores,"%i\n",op);
             fclose(cores);
             opc=1;
-            return op;
         }
 
     } while (opc!=1);
+
+    return op;
 }
 
 #endif // CORES_H_INCLUDED

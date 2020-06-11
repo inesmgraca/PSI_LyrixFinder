@@ -52,13 +52,13 @@ void texto8(int lang)
 void addmusic()
 {
     int key,op=0,opc=0,text[5]={3,6,10,12,13};
-    char nome[50],artist[50],album[50],music[125];  // detalhes da música
-    int horas,minutos,segundos,dia,mes,ano;         // tempo e data de adição/alteração
-    int getinfo,cor,lang;                           // infos definições
-    char infoget[25],admin[25];                     // infos admin
-    char folder[25]=".\\music\\";                   // localização do ficheiro
+    char nome[50],artist[50],album[50],music[125]; // detalhes da música
+    int horas,minutos,segundos,dia,mes,ano;        // tempo e data de adição/alteração
+    int getinfo,cor,lang;                          // infos definições
+    char r,admin[25];                              // infos admin
+    char folder[25]=".\\music\\";                  // localização do ficheiro
 
-    FILE *corestxt;                                 // saber cor e idioma escolhidos
+    FILE *corestxt;                                // saber cor e idioma escolhidos
     FILE *langs;
     corestxt=fopen(".\\options\\cor.txt","r");
     langs=fopen(".\\options\\lang.txt","r");
@@ -99,11 +99,13 @@ void addmusic()
 
     FILE *useradmin;
     useradmin=fopen(".\\user\\userlogin.txt","r");
-    while (fscanf(useradmin," %s",&infoget)!=EOF)
+    r=getc(useradmin);
+
+    do
     {
-        strcpy(admin,infoget);
-    }
-    fclose(useradmin);
+        printf("%c",r);
+        r=getc(useradmin);
+    } while (r!=EOF);
 
     FILE *registo_pt;
     registo_pt=fopen(".\\registos\\registo_pt.txt","a");

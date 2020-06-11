@@ -18,7 +18,7 @@ void texto4()
 
 int idioma()
 {
-    int key,op=1,opc=0,getinfo,cor,text[5]={3,6,10,12,13};
+    int key,op=0,opc=0,getinfo,cor,text[5]={3,6,10,12,13};
     // key = seta   op = opção a selecionar
 
     FILE *cores;                              //saber idioma escolhido anteriormente
@@ -40,14 +40,14 @@ int idioma()
 
         textbackground(text[cor]); //cor do highlight da opção
 
-        if (op==1)
+        if (op==0)
         {
-            gotoxy(49,10); //local do highlight da opção 1- pt
+            gotoxy(49,10); //local do highlight da opção 0- pt
             printf(" Português ");
         }
         else
         {
-            gotoxy(50,12); //local do highlight da opção 2- en
+            gotoxy(50,12); //local do highlight da opção 1- en
             printf(" English ");
         }
 
@@ -61,13 +61,13 @@ int idioma()
             switch (_getch())
             {
                 case 72:
-                    if (op!=1)
+                    if (op!=0)
                     {
                         op--;
                     }
                     break;
                 case 80:
-                    if (op!=2)
+                    if (op!=1)
                     {
                         op++;
                     }
@@ -87,7 +87,7 @@ int idioma()
 
             switch(op)
             {
-            case 1:
+            case 0:
                 gotoxy(43,15);
                 textbackground(text[cor]);
                 printf(" Português selecionado ");
@@ -97,9 +97,8 @@ int idioma()
                 system("cls");
                 fprintf(langs,"0\n");
                 fclose(langs);
-                return 0;
                 break;
-            case 2:
+            case 1:
                 gotoxy(46,15);
                 textbackground(text[cor]);
                 printf(" English selected ");
@@ -109,12 +108,13 @@ int idioma()
                 system("cls");
                 fprintf(langs,"1\n");
                 fclose(langs);
-                return 1;
                 break;
             }
         }
 
     } while (opc!=1);
+
+    return op;
 }
 
 #endif // IDIOMA_H_INCLUDED
