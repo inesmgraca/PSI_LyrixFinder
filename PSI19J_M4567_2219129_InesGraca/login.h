@@ -1,8 +1,6 @@
 #ifndef LOGIN_H_INCLUDED
 #define LOGIN_H_INCLUDED
 
-#define numlogins 10
-
 void texto9(int lang)
 {
     gotoxy(53,5);
@@ -134,18 +132,19 @@ int login()
         else if (key==13)
         {
             FILE *getusers;
-            getusers=fopen(".\\user\\users.txt","r");
+            getusers=fopen(".\\user\\users.txt","rb");
             system("cls");
+
+            for (int i=0;i<25;i++)
+            {
+                fread(&login[i],sizeof(struct log),1,getusers);
+            }
+
+            fclose(getusers);
 
             switch(op)
             {
             case 1:
-                for (int i=0;i<numlogins;i++)
-                {
-                    fread(&login[i],sizeof(struct log),1,getusers);
-                }
-
-                fclose(getusers);
                 gotoxy(53,5);
                 printf("LOGIN");
 
@@ -214,7 +213,7 @@ int login()
                     system("cls");
                     FILE *userlogin;
                     userlogin=fopen(".\\user\\userlogin.txt","w");
-                    fprintf(userlogin,"%s\n",login[usernum].user);
+                    fprintf(userlogin,"%s",login[usernum].user);
                     fclose(userlogin);
                     op=3;
                 }
@@ -329,20 +328,20 @@ int login()
                         if (opc==0)
                         {
                             FILE *newuser;
-                            newuser=fopen(".\\user\\users.txt","a");
+                            newuser=fopen(".\\user\\users.txt","ab");
                             fwrite(&logininfo,sizeof(struct log),1,newuser);
                             fclose(newuser);
 
                             if (lang==0)
                             {
-                                gotoxy(36,17);
+                                gotoxy(38,17);
                                 printf("SIM");
                                 gotoxy(5,19);
                                 printf("Utilizador criado ");
                             }
                             else
                             {
-                                gotoxy(35,17);
+                                gotoxy(37,17);
                                 printf("YES");
                                 gotoxy(5,19);
                                 printf("User created ");
@@ -352,14 +351,14 @@ int login()
                         {
                             if (lang==0)
                             {
-                                gotoxy(36,17);
+                                gotoxy(38,17);
                                 printf("NÃO");
                                 gotoxy(5,19);
                                 printf("Novo utilizador cancelado ");
                             }
                             else
                             {
-                                gotoxy(36,17);
+                                gotoxy(37,17);
                                 printf("NO");
                                 gotoxy(5,19);
                                 printf("New user canceled ");

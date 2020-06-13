@@ -51,7 +51,7 @@ void texto8(int lang)
 
 void addmusic()
 {
-    int key,op=0,opc=0,text[5]={3,6,10,12,13};
+    int key,op=0,opc=0,text[5]={3,6,10,12,13},c=0;
     char nome[50],artist[50],album[50],music[125]; // detalhes da música
     int horas,minutos,segundos,dia,mes,ano;        // tempo e data de adição/alteração
     int getinfo,cor,lang;                          // infos definições
@@ -103,15 +103,16 @@ void addmusic()
 
     do
     {
-        printf("%c",r);
+        admin[c]=r;
         r=getc(useradmin);
+        c++;
     } while (r!=EOF);
 
     FILE *registo_pt;
     registo_pt=fopen(".\\registos\\registo_pt.txt","a");
     FILE *registo_en;
     registo_en=fopen(".\\registos\\registo_en.txt","a");
-
+    fclose(useradmin);
 
     const char *existe = music;
 

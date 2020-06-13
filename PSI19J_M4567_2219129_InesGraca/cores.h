@@ -1,7 +1,7 @@
 #ifndef CORES_H_INCLUDED
 #define CORES_H_INCLUDED
 
-void texto6(int lang)
+void texto12(int lang)
 {
     if (lang==0)
     {
@@ -44,7 +44,7 @@ int cores()
     fscanf(langs,"%i",&lang);
     fclose(langs);
 
-    texto6(lang);
+    texto12(lang);
 
     do
     {

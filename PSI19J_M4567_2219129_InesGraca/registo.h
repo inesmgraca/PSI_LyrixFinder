@@ -26,7 +26,6 @@ void registo()
         printf("REGISTRY");
     }
 
-    printf("\n");
     gotoxy(1,10);
     r=getc(registo);
 
@@ -34,6 +33,7 @@ void registo()
     {
         printf("%c",r);
         r=getc(registo);
+
     } while (r!=EOF);
 
     fclose(registo);

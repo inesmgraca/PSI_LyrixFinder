@@ -26,7 +26,7 @@ void intro()
 
     for (int i=0;i<5;i++)
     {
-        Sleep(1000);
+        Sleep(500);
         if (i==0)
             printf("Loading");
         else if (i==4)

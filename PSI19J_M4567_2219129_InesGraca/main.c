@@ -6,6 +6,7 @@
 #include <time.h>
 #include "addmusic.h"
 #include "cores.h"
+#include "favoritos.h"
 #include "idioma.h"
 #include "intro.h"
 #include "login.h"
@@ -21,20 +22,20 @@ int main()
 
     intro();
 
-    login:
-    admin=login();
-    a=menu(admin);
+    do
+    {
+        admin=login();
+        a=menu(admin);
+    } while (a==1);
 
-    if (a==1)
-    {
-        goto login;
-    }
-    else
-    {
-        FILE *cores;
-        cores=fopen(".\\options\\cor.txt","w");
-        fprintf(cores,"0\n");
-        fclose(cores);
-        return 0;
-    }
+    FILE *cores;
+    cores=fopen(".\\options\\cor.txt","w");
+    fprintf(cores,"0\n");
+    fclose(cores);
+    FILE *userlogin;
+    userlogin=fopen(".\\user\\userlogin.txt","w");
+    fprintf(userlogin,"");
+    fclose(userlogin);
+    return 0;
+
 }

@@ -275,7 +275,7 @@ int menu(int admin)
                 pesquisa();
                 break;
             case 2:
-                //favoritos
+                favoritos();
                 break;
             case 3:
                 opcao:

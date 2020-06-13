@@ -35,6 +35,9 @@
 		<Unit filename="cores.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="favoritos.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="idioma.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
