@@ -1,8 +1,10 @@
 #ifndef ADDMUSIC_H_INCLUDED
 #define ADDMUSIC_H_INCLUDED
 
-void texto7(int lang)
+void text1()
 {
+    int lang=getlang();
+
     if (lang==0)
     {
         gotoxy(46,5);
@@ -27,8 +29,11 @@ void texto7(int lang)
     }
 }
 
-void texto8(int lang)
+int op1()
 {
+    int key,op=0,text[]={3,6,10,12,13};
+    int lang=getlang(),cor=getcor();
+
     if (lang==0)
     {
         gotoxy(5,17);
@@ -47,33 +52,71 @@ void texto8(int lang)
         gotoxy(5,21);
         printf("YES     NO");
     }
+
+    do
+    {
+        textbackground(text[cor]); //cor do highlight da opção
+
+        if (lang==0)
+        {
+            if (op==0)
+            {
+                gotoxy(4,21); //local do highlight da opção 0
+                printf(" SIM ");
+            }
+            else
+            {
+                gotoxy(12,21); //local do highlight da opção 1
+                printf(" NÃO ");
+            }
+        }
+        else
+        {
+            if (op==0)
+            {
+                gotoxy(4,21); //local do highlight da opção 0
+                printf(" YES ");
+            }
+            else
+            {
+                gotoxy(12,21); //local do highlight da opção 1
+                printf(" NO ");
+            }
+        }
+
+        gotoxy(1,25);
+        key=_getch();
+
+        system("color 0F");
+
+        if(key==0 || key==224)
+        {
+            switch (_getch())
+            {
+            case 75:
+                if (op!=0)
+                    op--;
+                break;
+            case 77:
+                if (op!=1)
+                    op++;
+                break;
+            }
+        }
+
+    } while (key!=13);
+
+    return op;
 }
 
 void addmusic()
 {
-    int key,op=0,opc=0,text[5]={3,6,10,12,13},c=0;
+    int op,c=0,lang=getlang();                     // infos definições
     char nome[50],artist[50],album[50],music[125]; // detalhes da música
     int horas,minutos,segundos,dia,mes,ano;        // tempo e data de adição/alteração
-    int getinfo,cor,lang;                          // infos definições
     char r,admin[25];                              // infos admin
-    char folder[25]=".\\music\\";                  // localização do ficheiro
 
-    FILE *corestxt;                                // saber cor e idioma escolhidos
-    FILE *langs;
-    corestxt=fopen(".\\options\\cor.txt","r");
-    langs=fopen(".\\options\\lang.txt","r");
-    while (fscanf(corestxt," %i",&getinfo)!=EOF)
-    {
-        cor=getinfo;
-    }
-    while (fscanf(langs," %i",&getinfo)!=EOF)
-    {
-        lang=getinfo;
-    }
-    fclose(corestxt);
-    fclose(langs);
-
-    texto7(lang);
+    text1();
 
     gotoxy(56,10);
     gets(nome);
@@ -82,7 +125,7 @@ void addmusic()
     gotoxy(56,14);
     gets(album);
 
-    strcpy(music,folder);
+    strcpy(music,".\\music\\");
     strcat(music,nome);
     strcat(music,"_");
     strcat(music,artist);
@@ -92,9 +135,7 @@ void addmusic()
     for(int i=0;i<strlen(music);i++)
     {
         if (music[i]==' ')
-        {
             music[i]='-';
-        }
     }
 
     FILE *useradmin;
@@ -112,11 +153,24 @@ void addmusic()
     registo_pt=fopen(".\\registos\\registo_pt.txt","a");
     FILE *registo_en;
     registo_en=fopen(".\\registos\\registo_en.txt","a");
+
     fclose(useradmin);
 
-    const char *existe = music;
+    const char *song = music;
 
-    if (access(existe,F_OK)==-1)
+    time_t atual;
+    time(&atual); //obtém o tempo atual, time() dá o valor atual em formato time_t
+    struct tm *tempo=localtime(&atual);
+    //localtime converte valor em formato time_t e devolve ponteiro para tm struct
+
+    horas=tempo->tm_hour;
+    minutos=tempo->tm_min;
+    segundos=tempo->tm_sec;
+    dia=tempo->tm_mday;
+    mes=tempo->tm_mon+1;
+    ano=tempo->tm_year+1900;
+
+    if (access(song,F_OK)==-1)
     {
         FILE *musica;
         musica=fopen(music,"w");
@@ -142,18 +196,6 @@ void addmusic()
         getch();
         system(music);
 
-        time_t atual;
-        time(&atual); //obtém o tempo atual, time() dá o valor atual em formato time_t
-        struct tm *tempo=localtime(&atual);
-        //localtime converte valor em formato time_t e devolve ponteiro para tm struct
-
-        horas=tempo->tm_hour;
-        minutos=tempo->tm_min;
-        segundos=tempo->tm_sec;
-        dia=tempo->tm_mday;
-        mes=tempo->tm_mon+1;
-        ano=tempo->tm_year+1900;
-
         if (lang==0)
         {
             gotoxy(5,19);
@@ -174,131 +216,57 @@ void addmusic()
         fprintf(registo_pt,"     %s adicionou %s às ",admin,music);
         fprintf(registo_pt,"%02i:%02i:%02i no dia ",horas,minutos,segundos);
         fprintf(registo_pt,"%02i/%02i/%i\n",dia,mes,ano);
-
-        getch();
     }
     else
     {
-        texto8(lang);
+        op=op1();
 
-        do
+        if (op==0)
         {
-            textbackground(text[cor]); //cor do highlight da opção
+            system(music);
 
             if (lang==0)
             {
-                if (op==0)
-                {
-                    gotoxy(4,21); //local do highlight da opção 0
-                    printf(" SIM ");
-                }
-                else
-                {
-                    gotoxy(12,21); //local do highlight da opção 1
-                    printf(" NÃO ");
-                }
+                gotoxy(33,19);
+                printf("SIM");
+                gotoxy(5,21);
+                printf("Música alterada às %02i:%02i:%02i ",horas,minutos,segundos);
+                printf("no dia %02i/%02i/%i ",dia,mes,ano);
             }
             else
             {
-                if (op==0)
-                {
-                    gotoxy(4,21); //local do highlight da opção 0
-                    printf(" YES ");
-                }
-                else
-                {
-                    gotoxy(12,21); //local do highlight da opção 1
-                    printf(" NO ");
-                }
+                gotoxy(44,19);
+                printf("YES");
+                gotoxy(5,21);
+                printf("Music modified at %02i:%02i:%02i ",horas,minutos,segundos);
+                printf("in %02i/%02i/%i ",dia,mes,ano);
             }
 
-            gotoxy(1,25);
-            key=_getch();
+            fprintf(registo_en,"     %s modified %s at ",admin,music);
+            fprintf(registo_en,"%02i:%02i:%02i in ",horas,minutos,segundos);
+            fprintf(registo_en,"%02i/%02i/%i\n",dia,mes,ano);
 
-            system("color 0F");
-
-            if(key==0 || key==224)
+            fprintf(registo_pt,"     %s alterou %s às ",admin,music);
+            fprintf(registo_pt,"%02i:%02i:%02i no dia ",horas,minutos,segundos);
+            fprintf(registo_pt,"%02i/%02i/%i\n",dia,mes,ano);
+        }
+        else
+        {
+            if (lang==0)
             {
-                switch (_getch())
-                {
-                    case 75:
-                        if (op!=0)
-                        {
-                            op--;
-                        }
-                        break;
-                    case 77:
-                        if (op!=1)
-                        {
-                            op++;
-                        }
-                        break;
-                }
+                gotoxy(33,19);
+                printf("NÃO");
+                gotoxy(5,21);
+                printf("Operação cancelada ");
             }
-            else if (key==13)
+            else
             {
-                if (op==0)
-                {
-                    system(music);
-
-                    time_t atual;
-                    time(&atual); //obtém o tempo atual, time() dá o valor atual em formato time_t
-                    struct tm *tempo=localtime(&atual);
-                    //localtime converte valor em formato time_t e devolve ponteiro para tm struct
-
-                    horas=tempo->tm_hour;
-                    minutos=tempo->tm_min;
-                    segundos=tempo->tm_sec;
-                    dia=tempo->tm_mday;
-                    mes=tempo->tm_mon+1;
-                    ano=tempo->tm_year+1900;
-
-                    if (lang==0)
-                    {
-                        gotoxy(33,19);
-                        printf("SIM");
-                        gotoxy(5,21);
-                        printf("Música alterada às %02i:%02i:%02i ",horas,minutos,segundos);
-                        printf("no dia %02i/%02i/%i ",dia,mes,ano);
-                    }
-                    else
-                    {
-                        gotoxy(44,19);
-                        printf("YES");
-                        gotoxy(5,21);
-                        printf("Music modified at %02i:%02i:%02i ",horas,minutos,segundos);
-                        printf("in %02i/%02i/%i ",dia,mes,ano);
-                    }
-
-                    fprintf(registo_en,"     %s modified %s at ",admin,music);
-                    fprintf(registo_en,"%02i:%02i:%02i in ",horas,minutos,segundos);
-                    fprintf(registo_en,"%02i/%02i/%i\n",dia,mes,ano);
-
-                    fprintf(registo_pt,"     %s alterou %s às ",admin,music);
-                    fprintf(registo_pt,"%02i:%02i:%02i no dia ",horas,minutos,segundos);
-                    fprintf(registo_pt,"%02i/%02i/%i\n",dia,mes,ano);
-                }
-                else
-                {
-                    if (lang==0)
-                    {
-                        gotoxy(33,19);
-                        printf("NÃO");
-                        gotoxy(5,21);
-                        printf("Operação cancelada ");
-                    }
-                    else
-                    {
-                        gotoxy(44,19);
-                        printf("NO");
-                        gotoxy(5,21);
-                        printf("Operation canceled ");
-                    }
-                }
-                opc=1;
+                gotoxy(44,19);
+                printf("NO");
+                gotoxy(5,21);
+                printf("Operation canceled ");
             }
-
-        } while (opc!=1);
+        }
     }
 
     fclose(registo_pt);

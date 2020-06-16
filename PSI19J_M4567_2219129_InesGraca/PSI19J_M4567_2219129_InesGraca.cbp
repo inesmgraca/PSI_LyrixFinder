@@ -32,13 +32,7 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Unit filename="addmusic.h" />
-		<Unit filename="cores.h">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
-		<Unit filename="favoritos.h">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
-		<Unit filename="idioma.h">
+		<Unit filename="infos.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="intro.h" />
@@ -49,10 +43,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="menu.h" />
-		<Unit filename="pesquisa.h">
+		<Unit filename="opcoes.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
-		<Unit filename="registo.h">
+		<Unit filename="pesquisa.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Extensions>

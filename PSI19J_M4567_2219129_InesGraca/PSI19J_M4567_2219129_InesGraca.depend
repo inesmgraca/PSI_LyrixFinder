@@ -1,26 +1,24 @@
 # depslib dependency file v1.0
-1592079141 source:c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\psi19j_m4567_2219129_inesgraca\main.c
+1592315471 source:c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\psi19j_m4567_2219129_inesgraca\main.c
 	<stdio.h>
 	<stdlib.h>
 	<conio.c>
 	<locale.h>
 	<string.h>
 	<time.h>
+	"opcoes.h"
+	"infos.h"
 	"addmusic.h"
-	"cores.h"
-	"favoritos.h"
-	"idioma.h"
 	"intro.h"
 	"login.h"
 	"pesquisa.h"
-	"registo.h"
 	"menu.h"
 
-1592069964 c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\psi19j_m4567_2219129_inesgraca\addmusic.h
+1592315471 c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\psi19j_m4567_2219129_inesgraca\addmusic.h
 
 1592078610 c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\psi19j_m4567_2219129_inesgraca\intro.h
 
-1592072772 c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\psi19j_m4567_2219129_inesgraca\menu.h
+1592315471 c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\psi19j_m4567_2219129_inesgraca\menu.h
 
 1589974542 c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\psi19j_m4567_2219129_inesgraca\select.h
 
@@ -28,15 +26,17 @@
 
 1591915840 c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\psi19j_m4567_2219129_inesgraca\idioma.h
 
-1590076692 c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\psi19j_m4567_2219129_inesgraca\opcoes.h
+1592315471 c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\psi19j_m4567_2219129_inesgraca\opcoes.h
 
 1592062571 c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\psi19j_m4567_2219129_inesgraca\cores.h
 
-1592082735 c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\psi19j_m4567_2219129_inesgraca\login.h
+1592340817 c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\psi19j_m4567_2219129_inesgraca\login.h
 
 1592072531 c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\psi19j_m4567_2219129_inesgraca\registo.h
 
-1592074720 c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\psi19j_m4567_2219129_inesgraca\pesquisa.h
+1592316185 c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\psi19j_m4567_2219129_inesgraca\pesquisa.h
 
 1592074787 c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\psi19j_m4567_2219129_inesgraca\favoritos.h
+
+1592315471 c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\psi19j_m4567_2219129_inesgraca\infos.h
 

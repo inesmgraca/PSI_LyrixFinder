@@ -4,19 +4,17 @@
 #include <locale.h>
 #include <string.h>
 #include <time.h>
+#include "opcoes.h"
+#include "infos.h"
 #include "addmusic.h"
-#include "cores.h"
-#include "favoritos.h"
-#include "idioma.h"
 #include "intro.h"
 #include "login.h"
 #include "pesquisa.h"
-#include "registo.h"
 #include "menu.h"
 
 int main()
 {
-    int a=0,admin;                      //0- regular user, 1- admin
+    int op=0,admin;                 //0- regular user, 1- admin
     setlocale(LC_ALL,"Portuguese");
     textcolor(15);
 
@@ -25,8 +23,9 @@ int main()
     do
     {
         admin=login();
-        a=menu(admin);
-    } while (a==1);
+        op=menu(admin);
+
+    } while (op==1);
 
     FILE *cores;
     cores=fopen(".\\options\\cor.txt","w");
@@ -34,8 +33,6 @@ int main()
     fclose(cores);
     FILE *userlogin;
     userlogin=fopen(".\\user\\userlogin.txt","w");
-    fprintf(userlogin,"");
     fclose(userlogin);
     return 0;
-
 }
