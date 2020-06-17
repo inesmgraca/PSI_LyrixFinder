@@ -40,12 +40,13 @@ int op2()
         {
             if (op==0)
             {
-                gotoxy(46,10); //local do highlight da opção 1
+                gotoxy(46,10); //local do highlight da opção 0
                 printf(" Conta já existente ");
             }
             else
             {
-                gotoxy(47,12); //local do highlight da opção 2
+                gotoxy(47,12); //local do highlight da opção 1
+
                 printf(" Criar nova conta ");
             }
         }
@@ -53,12 +54,12 @@ int op2()
         {
             if (op==0)
             {
-                gotoxy(47,10); //local do highlight da opção 1
+                gotoxy(47,10); //local do highlight da opção 0
                 printf(" Existing account ");
             }
             else
             {
-                gotoxy(46,12); //local do highlight da opção 2
+                gotoxy(46,12); //local do highlight da opção 1
                 printf(" Create new account ");
             }
         }
@@ -109,55 +110,56 @@ int op3()
     }
 
     do
-    {
-        textbackground(text[cor]); //cor do highlight da opção
-
-        if (lang==0)
         {
-            if (op==0)
+            textbackground(text[cor]); //cor do highlight da opção
+
+            if (lang==0)
             {
-                gotoxy(4,19); //local do highlight da opção 0
-                printf(" SIM ");
+                if (op==0)
+                {
+                    gotoxy(4,19); //local do highlight da opção 0
+                    printf(" SIM ");
+                }
+                else
+                {
+                    gotoxy(12,19); //local do highlight da opção 1
+                    printf(" NÃO ");
+                }
             }
             else
             {
-                gotoxy(12,19); //local do highlight da opção 1
-                printf(" NÃO ");
+                if (op==0)
+                {
+                    gotoxy(4,19); //local do highlight da opção 0
+                    printf(" YES ");
+                }
+                else
+                {
+                    gotoxy(12,19); //local do highlight da opção 1
+                    printf(" NO ");
+                }
             }
-        }
-        else
-        {
-            if (op==0)
-            {
-                gotoxy(4,19); //local do highlight da opção 0
-                printf(" YES ");
-            }
-            else
-            {
-                gotoxy(12,19); //local do highlight da opção 1
-                printf(" NO ");
-            }
-        }
 
-        gotoxy(1,25);
-        key=_getch();
+            gotoxy(1,25);
+            key=_getch();
 
-        system("color 0F");
+            system("color 0F");
 
-        if(key==0 || key==224)
-        {
-            switch (_getch())
+            if(key==0 || key==224)
             {
-            case 75:
-                if (op!=0)
-                    op--;
-                break;
-            case 77:
-                if (op!=1)
-                    op++;
-                break;
+                switch (_getch())
+                {
+                case 75:
+                    if (op!=0)
+                        op--;
+                    break;
+                case 77:
+                    if (op!=1)
+                        op++;
+                    break;
+                }
             }
-        }
+
     } while (key!=13);
 
     return op;
@@ -165,16 +167,22 @@ int op3()
 
 int login()
 {
-    int usernum=-1,login1,login2,lang=getlang(),key,op,p;
+    int usernum,login1,login2,key,p,op,text[]={3,6,10,12,13};
+    int lang=getlang(),cor;
 
     struct log
     {
         char user[25],pass[25];
-        int usertype;           //0- normal user, 1- admin
+        int usertype;               //0- normal user, 1- admin
     };
 
     struct log logininfo;
     struct log login[25];
+
+    FILE *cores;    //saber cor escolhida
+    cores=fopen(".\\options\\cor.txt","r");
+    fscanf(cores,"%i",&cor);
+    fclose(cores);
 
     textcolor(15);
 
@@ -186,25 +194,25 @@ int login()
     system("cls");
 
     for (int i=0;i<25;i++)
-    {
         fread(&login[i],sizeof(struct log),1,getusers);
-    }
 
     fclose(getusers);
-
-    text2();
-    p=0;
 
     switch(op)
     {
     case 0:
         gotoxy(53,5);
         printf("LOGIN");
+
+        text2();
+
         gotoxy(54,10);
         gets(logininfo.user);
         gotoxy(54,12);
 
-        do                      //password
+        p=0;
+
+        do              //password
         {
             key=getch();
             switch (key)
@@ -229,23 +237,31 @@ int login()
 
         } while (key!=13);
 
+        usernum=-1;
+
         for (int c=0;c<25;c++)
         {
             login1=strcmp(logininfo.user,login[c].user);
             login2=strcmp(logininfo.pass,login[c].pass);
 
             if (login1==0 && login2==0)
+            {
                 usernum=c;
+            }
         }
 
-        if (usernum==-1)
+        if (usernum==-1)    //-1 = não há correspondência
         {
-            gotoxy(5,17);
-
             if (lang==0)
+            {
+                gotoxy(5,17);
                 printf("O username e/ou a password estão incorretas ");
+            }
             else
+            {
+                gotoxy(5,17);
                 printf("Username and/or password are incorrect ");
+            }
 
             getch();
             system("cls");
@@ -258,6 +274,7 @@ int login()
             userlogin=fopen(".\\user\\userlogin.txt","w");
             fprintf(userlogin,"%s",login[usernum].user);
             fclose(userlogin);
+            op=3;
         }
         break;
     case 1:
@@ -272,11 +289,16 @@ int login()
             printf("NEW ACCOUNT");
         }
 
+        text2();
+        fflush(stdin);
+
         gotoxy(54,10);
         gets(logininfo.user);
         gotoxy(54,12);
 
-        do                      //password
+        p=0;
+
+        do              //password
         {
             key=getch();
             switch (key)
