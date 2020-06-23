@@ -40,3 +40,32 @@
 
 1592315471 c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\psi19j_m4567_2219129_inesgraca\infos.h
 
+1592315471 source:c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\src\main.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.c>
+	<locale.h>
+	<string.h>
+	<time.h>
+	"opcoes.h"
+	"infos.h"
+	"addmusic.h"
+	"intro.h"
+	"login.h"
+	"pesquisa.h"
+	"menu.h"
+
+1592315471 c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\src\opcoes.h
+
+1592315471 c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\src\infos.h
+
+1592315471 c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\src\addmusic.h
+
+1592078610 c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\src\intro.h
+
+1592382484 c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\src\login.h
+
+1592316185 c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\src\pesquisa.h
+
+1592315471 c:\users\inesm\onedrive\documentos\github\psi19j_m4567_2219129_inesgraca\src\menu.h
+
