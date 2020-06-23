@@ -1,6 +1,4 @@
-# PSI19J_M4567_2219129_InesGraca
-
-LyrixFinder - Programa de pesquisa de letras de músicas
+# LyrixFinder - Programa de pesquisa de letras de músicas
 
 Permite adicionar músicas aos favoritos, alterar idioma e cor/aspeto
 2 tipos de utilizadores: LyrixLovers e LyrixAdmins
