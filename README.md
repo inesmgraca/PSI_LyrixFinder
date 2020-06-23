@@ -1,4 +1,5 @@
-# LyrixFinder - Programa de pesquisa de letras de músicas
+# LyrixFinder
+Programa de pesquisa de letras de músicas
 
 Permite adicionar músicas aos favoritos, alterar idioma e cor/aspeto
 2 tipos de utilizadores: LyrixLovers e LyrixAdmins
