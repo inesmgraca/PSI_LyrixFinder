@@ -7,5 +7,5 @@ LyrixAdmins podem ainda adicionar/alterar letras de músicas e ver registo das m
 
 Navegação:
 Todas as opções são escolhidas através das teclas direcionais
-Quando a opção pretendida está destacada, basta clicar na tecla <ENTER>
-Ao terminar de preencher um campo ou visualizar as informações apresentadas, pressionar <ENTER>
+Quando a opção pretendida está destacada, basta clicar na tecla ENTER
+Ao terminar de preencher um campo ou visualizar as informações apresentadas, pressionar ENTER
